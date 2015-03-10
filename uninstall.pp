@@ -1,10 +1,23 @@
+
+service { "mysql":
+  ensure => "stopped",
+}
+
+
+service { "apache2":
+  ensure => "stopped",
+}
+
+
 package { "mysql-server":
-ensure => "purged"
+ensure => "purged",
+before => service['mysql'],
 }
 
 
 package { "apache2":
-ensure => "purged"
+ensure => "purged",
+before => service['apache2'],
 }
 
 
