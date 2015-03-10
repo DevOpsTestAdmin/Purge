@@ -9,6 +9,20 @@ service { "apache2":
 }
 
 
+
+package { "apache2":
+ensure => "purged",
+require => service['apache2'],
+}
+
+
+exec { 'autoremove-apache':
+    command => '/usr/bin/apt-get autoremove --purge -y',
+    refreshonly => true,
+    subscribe => package['apache2'],
+}
+
+
 package { "mysql-server":
 ensure => "purged",
 require => service['mysql'],
@@ -25,18 +39,6 @@ ensure => "purged",
 require => service['mysql'],
 }
 
-
-package { "apache2":
-ensure => "absent",
-require => service['apache2'],
-}
-
-
-exec { 'autoremove-apache':
-    command => '/usr/bin/apt-get autoremove --purge -y',
-    refreshonly => true,
-    subscribe => Package['apache2'],
-}
 
 exec { 'autoremove-mysql-server':
     command => '/usr/bin/apt-get autoremove --purge -y',
