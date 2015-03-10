@@ -10,7 +10,7 @@ service { "apache2":
 
 
 
-package { "apache2":
+package { "apache2-mpm-prefork":
 ensure => "purged",
 require => service['apache2'],
 }
@@ -19,7 +19,7 @@ require => service['apache2'],
 exec { 'autoremove-apache':
     command => '/usr/bin/apt-get autoremove --purge -y',
     refreshonly => true,
-    subscribe => package['apache2'],
+    subscribe => package['apache2-mpm-prefork'],
 }
 
 
