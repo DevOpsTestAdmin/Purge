@@ -5,10 +5,8 @@ service { "apache2":
   ensure => "stopped",
 }
 
-
-
 package { "apache2.2":
-ensure => "purged",
+ensure => "absent",
 require => service['apache2'],
 }
 
