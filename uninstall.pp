@@ -20,6 +20,11 @@ before => service['mysql'],
 }
 
 
+package { "mysql":
+ensure => "purged",
+before => service['mysql'],
+}
+
 
 package { "apache2":
 ensure => "purged",
