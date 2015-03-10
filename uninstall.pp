@@ -7,8 +7,21 @@ service { "apache2":
 
 package { "apache2.2":
 ensure => "absent",
-require => service['apache2'],
+subscribe => service['apache2'],
 }
+
+package { "apache2":
+ensure => "absent",
+subscribe => service['apache2'],
+}
+
+
+
+package { "apache2-utils":
+ensure => "absent",
+subscribe => service['apache2'],
+}
+
 
 
 exec { 'autoremove-apache2.2':
