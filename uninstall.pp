@@ -27,7 +27,7 @@ require => service['mysql'],
 
 
 package { "apache2":
-ensure => "purged",
+ensure => "absent",
 require => service['apache2'],
 }
 
