@@ -6,19 +6,19 @@ service { "apache2":
 }
 
 package { "apache2.2":
-ensure => "absent",
+ensure => "purged",
 subscribe => service['apache2'],
 }
 
 package { "apache2":
-ensure => "absent",
+ensure => "purged",
 subscribe => service['apache2'],
 }
 
 
 
 package { "apache2-utils":
-ensure => "absent",
+ensure => "purged",
 subscribe => service['apache2'],
 }
 
