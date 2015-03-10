@@ -24,10 +24,10 @@ subscribe => service['apache2'],
 
 
 
-exec { 'autoremove-apache2.2':
+exec { 'autoremove-apache2':
     command => '/usr/bin/apt-get autoremove --purge -y',
     refreshonly => true,
-    subscribe => package['apache2.2'],
+    subscribe => package['apache2'],
 }
 
 
