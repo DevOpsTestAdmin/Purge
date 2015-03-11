@@ -1,3 +1,7 @@
+service { "mysql":
+  ensure => "stopped",
+}
+
 
 service { "apache2":
   ensure => "stopped",
@@ -25,5 +29,24 @@ package { "apache2-mpm-prefork":
 ensure => "purged",
 }
 
+package { "mysql-server":
+ensure => "purged",
+}
+
+package { "mysql-client":
+ensure => "purged",
+}
 
 
+package { "mysql":
+ensure => "purged",
+}
+
+
+file { "remove_wordpress":
+ensure => absent,
+path => "/var/www",
+recurse => true,
+purge => true,
+force =>true,
+}
