@@ -42,6 +42,25 @@ package { "mysql":
 ensure => "purged",
 }
 
+exec { 'autoremove-mysql-server':
+    command => '/usr/bin/apt-get autoremove --purge -y',
+    refreshonly => true,
+    subscribe => package['mysql-server'],
+}
+
+exec { 'autoremove-mysql-client':
+    command => '/usr/bin/apt-get autoremove --purge -y',
+    refreshonly => true,
+    subscribe => package['mysql-client'],
+}
+
+exec { 'autoremove-mysql':
+    command => '/usr/bin/apt-get autoremove --purge -y',
+    refreshonly => true,
+    subscribe => package['mysql'],
+}
+
+
 
 file { "remove_wordpress":
 ensure => absent,
