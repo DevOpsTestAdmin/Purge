@@ -35,12 +35,6 @@ require => package['apache2'],
 }
 
 
-exec { 'autoremove-apache':
-    command => '/usr/bin/apt-get autoremove --purge -y',
-    refreshonly => true,
-    subscribe => package['apache2'],
-}
-
 
 package { "mysql-server":
 ensure => "purged",
